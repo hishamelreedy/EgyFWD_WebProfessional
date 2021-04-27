@@ -113,4 +113,3 @@ function scrollToSection(e) {
   }
   toggleActiveState(selectedSection, e.target);
 }
-navList.addEventListener("click", scrollToSection);
