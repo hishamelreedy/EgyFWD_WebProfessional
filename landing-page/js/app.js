@@ -44,7 +44,7 @@ initmenu: (menuElement) => {
     const menu = document.querySelector(menuElement);
     //I can Use Let Section of Sections to iterate but I like to use loop like I do in C++
     //It is more easily this way to handle
-    for (var sectioniterator=0;sectioniterator<sections.length;sectioniterator++){
+    for (let sectioniterator=0;sectioniterator<sections.length;sectioniterator++){
         const menuLink = document.createElement('li');
         // Scroll to section on link click
         menuLink.innerHTML = 
@@ -109,10 +109,7 @@ function scrollToSection(e) {
   //check if scrollIntoView is supported
   if (typeof selectedSection.scrollIntoView !== undefined) {
     //smooth scroll
-    selectedSection.scrollIntoView({
-      behavior: "smooth",
-      block: "center",
-    });
+    selectedSection.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
   }
   toggleActiveState(selectedSection, e.target);
 }
