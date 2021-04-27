@@ -18,7 +18,8 @@
  * 
 */
 const sections = document.querySelectorAll('section');
-const menulinks = document.getElementsByClassName('menu__link');
+const menulinks = document.getElementById('navbar__list');
+const menulinks_childs=document.getElementById('navbar__list').childNodes;
 const pageoffset = 440;
 
 /**
@@ -89,7 +90,7 @@ function toggleActiveStateByScroll() {
           }
         });
       },
-      { rootMargin: "0px 0px -300px 0px" }
+      { rootMargin: "0% 0% -33% 0%" }
     );
 
     //Observe sections
@@ -101,15 +102,20 @@ function toggleActiveStateByScroll() {
 window.addEventListener("scroll", toggleActiveStateByScroll);
 
 //Function to respond when clicking on menu link to smooth scroll to the section
-function scrollToSection(e) {
+// Scroll to section on link click
+menulinks.addEventListener('click', (e) => {
+  // prevent a(href) default behaviour
   e.preventDefault();
-  const selectedSection = document.getElementById(
-    e.target.getAttribute("href").substring(1)
-  );
-  //check if scrollIntoView is supported
-  if (typeof selectedSection.scrollIntoView !== undefined) {
-    //smooth scroll
-    selectedSection.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
+  console.dir(e.target.nodeName)
+  if (e.target.nodeName == 'A') {
+      for (let section of sections) {
+          if (e.target.outerText == section.attributes['data-nav'].nodeValue) {
+              window.scrollTo({
+                  top: section.offsetTop,
+                  left: section.offsetLeft,
+                  behavior: 'smooth'
+              })
+          }
+      }
   }
-  toggleActiveState(selectedSection, e.target);
-}
+})
