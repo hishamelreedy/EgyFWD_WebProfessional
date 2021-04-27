@@ -1,0 +1,26 @@
+{
+  "name": "weather-journal-app",
+  
+  "version": "1.0.0",
+
+  "description": "get weather using zipcode",
+
+  "main": "server.js",
+
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  },
+
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "wja-fend"
+  },
+  "keywords": [
+    "weather"
+  ],
+  "author": "HishamElreedy",
+  "license": "ISC"
+}
