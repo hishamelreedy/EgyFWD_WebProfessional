@@ -13,12 +13,10 @@ async function getweatherData(){
         let zipcode=document.querySelector("#zip").value;
         let feelings = document.querySelector("#feelings").value;
         //Integrating OpenWeatherMap API
-        let result= await fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${zipcode}&appid=${apikey}&units=metric`);
-        let dataresult = await result.json();
-        let resultemp=`Temperature is ${dataresult.main.temp} celesius\n`;
+        let temp= await getdata(zipcode,feelings);
+        let resultemp=`Temperature is ${temp} celesius\n`;
         let resultdate=`Date is ${newDate}\n`;
         let resultfeeling = `Feeling is ${feelings}\n`;
-        console.log(resultfeeling)
         document.querySelector("#entryHolder").children[0].textContent=resultemp;
         document.querySelector("#entryHolder").children[1].textContent=resultdate;
         document.querySelector("#entryHolder").children[2].textContent=resultfeeling;
@@ -35,6 +33,7 @@ async function getdata(zipcode,feelings){
     }
     let weatherdata = await response.json();
     let temp = weatherdata.main.temp;
+    return temp;
     }catch{
 
     }
@@ -46,9 +45,7 @@ async function getdata(zipcode,feelings){
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            date: newDate,
-            temp: temp,
-            feelings: feelings
+            temp: temp
         })
     });
 }
